@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(MyApp(
@@ -36,8 +37,19 @@ class MyApp extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children:  <Widget>[
                 Expanded(
+                  child: GridView.builder(
+                          itemCount: 250,
+                          gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                          itemBuilder: (BuildContext context, int index) => CachedNetworkImage(
+                          imageUrl: 'https://loremflickr.com/100/100/music?lock=$index',
+                            fadeOutDuration: const Duration(seconds: 0),
+                            fadeInDuration: const Duration(seconds: 0),
+                          ),
+                          ),
 
-                  child:
+
+                 /*
                   GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
@@ -47,9 +59,10 @@ class MyApp extends StatelessWidget {
                       return GridTile(
                         child: Image.asset('assets/'+items[index] + '.jpg'),
                       );
-
                  }
                 ),
+                 */
+
             ),
          ],
         ),
